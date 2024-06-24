@@ -6,7 +6,7 @@ namespace Movies.DAL.UnitOfWork
 {
     public class UnitOfWork(MoviesDbContext context) : IUnitOfWork
     {
-        private readonly MoviesDbContext _context = context;
+        private readonly MoviesDbContext _context = context ?? throw new ArgumentNullException(nameof(context));
         private readonly Dictionary<string, object?> _repos = [];
 
         public IBaseRepo<TEntity> Repo<TEntity>() where TEntity : BaseEntity
@@ -25,7 +25,7 @@ namespace Movies.DAL.UnitOfWork
         }
 
         private bool disposed = false;
-        public virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
             {

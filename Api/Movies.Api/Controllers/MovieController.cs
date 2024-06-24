@@ -65,8 +65,8 @@ public class MovieController : ControllerBase
         {
             var response = _searchResultService.GetLatestSearchResults();
 
-            return response.Succeeded 
-                ? Ok(_mapper.Map<Response<List<SearchResult>>, Response<List<SearchResultDTO>>>(response)) 
+            return response.Succeeded
+                ? Ok(_mapper.Map<Response<List<SearchResult>>, Response<List<SearchResultDTO>>>(response))
                 : BadRequest(response);
         }
         catch (Exception ex)

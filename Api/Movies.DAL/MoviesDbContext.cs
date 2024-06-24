@@ -25,8 +25,8 @@ namespace Movies.DAL
 
             foreach (var type in typesToRegister)
             {
-                var configurationInstance = (IBaseTypeConfiguration)Activator.CreateInstance(type);
-                configurationInstance.ApplyConfiguration(modelBuilder);
+                var configurationInstance = Activator.CreateInstance(type) as IBaseTypeConfiguration;
+                configurationInstance?.ApplyConfiguration(modelBuilder);
             }
         }
     }

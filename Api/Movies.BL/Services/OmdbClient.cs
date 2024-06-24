@@ -40,7 +40,7 @@ namespace Movies.BL.Services
             var content = await response.Content.ReadAsStringAsync();
             var movie = JsonConvert.DeserializeObject<T>(content);
 
-            return Convert.ToBoolean(movie?.Response) ? movie : ($"{nameof(OmdbClient)}:{nameof(GetMovieByIMDbId)} - {movie.Error}", HttpStatusCode.NotFound);
+            return Convert.ToBoolean(movie?.Response) ? movie : ($"{nameof(OmdbClient)}:{nameof(GetMovieByIMDbId)} - {movie?.Error}", HttpStatusCode.NotFound);
         }
     }
 }
