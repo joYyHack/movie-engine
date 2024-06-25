@@ -42,6 +42,22 @@ public class MovieController : ControllerBase
         }
     }
 
+    [HttpGet("search-bunch-by-title")]
+    public async Task<IActionResult> SearchBunch([Required] string title, [Range(1, 100)] uint pages = 5)
+    {
+        try
+        {
+            var response = await _movieService.SearchBunchMoviesByTitle(title, pages);
+
+            return response.Succeeded ? Ok(response) : BadRequest(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            throw;
+        }
+    }
+
     [HttpGet("get-by-imdbid")]
     public async Task<IActionResult> Get([IMDbId] string IMDbId)
     {

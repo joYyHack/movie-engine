@@ -9,6 +9,17 @@ using MoviesFetcher.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 // Appsettings
 builder.Services.Configure<OMDB>(builder.Configuration.GetSection(nameof(OMDB)));
 builder.Services.Configure<SearchConfig>(builder.Configuration.GetSection(nameof(SearchConfig)));
@@ -49,10 +60,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors();
+
 app.UseAuthorization();
 
 app.MapControllers();
 
-//app.MigrateDb();
+app.MigrateDb();
 
 app.Run();

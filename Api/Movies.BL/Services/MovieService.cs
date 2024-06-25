@@ -15,9 +15,16 @@ namespace Movies.BL.Services
 
         public async Task<Response<MoviesSearchResult>> SearchMoviesByTitle(string title, uint page)
         {
-            ArgumentNullException.ThrowIfNull(title, nameof(title));
-
             var movies = await _omdbClient.SearchMoviesByTitle(title, page);
+            await _searchResultService.SaveSearchQuery(title);
+
+            return movies;
+        }
+
+
+        public async Task<Response<MoviesSearchResult>> SearchBunchMoviesByTitle(string title, uint pages = 5)
+        {
+            var movies = await _omdbClient.SearchBunchMoviesByTitle(title, pages);
             await _searchResultService.SaveSearchQuery(title);
 
             return movies;
@@ -25,11 +32,7 @@ namespace Movies.BL.Services
 
         public async Task<Response<MovieFullData>> GetMovieByIMDbId(string IMDbId)
         {
-            ArgumentNullException.ThrowIfNull(IMDbId, nameof(IMDbId));
-
-            var movie = await _omdbClient.GetMovieByIMDbId(IMDbId);
-
-            return movie;
+            return await _omdbClient.GetMovieByIMDbId(IMDbId);
         }
     }
 }

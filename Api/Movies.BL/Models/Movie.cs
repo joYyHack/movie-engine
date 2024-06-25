@@ -6,7 +6,7 @@ namespace Movies.BL.Models
     {
         [JsonProperty("Search")]
         public List<Movie> Movies { get; set; }
-        public string TotalResults { get; set; }
+        public int TotalResults { get; set; }
     }
 
     public class Movie
