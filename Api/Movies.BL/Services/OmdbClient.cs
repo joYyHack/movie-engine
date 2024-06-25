@@ -42,7 +42,7 @@ namespace Movies.BL.Services
 
             if (response.Succeeded && response.Data is not null && response.Data.TotalResults > 0)
             {
-                for (uint i = 2; i <= pages && response.Data.Movies.Count >= response.Data.TotalResults; i++)
+                for (uint i = 2; i <= pages || response.Data.Movies.Count <= response.Data.TotalResults; i++)
                 {
                     var tempResponse = await SearchMoviesByTitle(title, i);
 
@@ -54,7 +54,7 @@ namespace Movies.BL.Services
                         break;
                     }
 
-                    response.Data.Movies.AddRange(response.Data.Movies);
+                    response.Data.Movies.AddRange(tempResponse.Data.Movies);
                 }
             }
 
