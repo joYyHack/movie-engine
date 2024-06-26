@@ -4,7 +4,10 @@ using Movies.DAL.Repo.IRepo;
 
 namespace Movies.DAL.Repo
 {
-    public class SearchResultRepo(DbContext dbContext) : BaseRepo<SearchResult>(dbContext), ISearchResultRepo
+    public class SearchResultRepo : BaseRepo<SearchResult>, ISearchResultRepo
     {
+        public SearchResultRepo(DbContext dbContext) : base(dbContext)
+        {
+        }
     }
 }

@@ -5,9 +5,15 @@ using System.Linq.Expressions;
 
 namespace Movies.DAL.Repo
 {
-    public class BaseRepo<TEntity>(DbContext context) : IBaseRepo<TEntity> where TEntity : BaseEntity
+    public class BaseRepo<TEntity> : IBaseRepo<TEntity> where TEntity : BaseEntity
     {
-        protected readonly DbContext _context = context;
+        protected readonly DbContext _context;
+
+        public BaseRepo(DbContext context)
+        {
+            _context = context;
+        }
+
         protected DbSet<TEntity> Set => _context.Set<TEntity>();
 
         public IQueryable<TEntity> GetAll() => Set;

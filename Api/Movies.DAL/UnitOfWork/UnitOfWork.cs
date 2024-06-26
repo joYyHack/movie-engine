@@ -4,10 +4,10 @@ using Movies.DAL.Repo.IRepo;
 
 namespace Movies.DAL.UnitOfWork
 {
-    public class UnitOfWork(MoviesDbContext context) : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly MoviesDbContext _context = context ?? throw new ArgumentNullException(nameof(context));
-        private readonly Dictionary<string, object?> _repos = [];
+        private readonly MoviesDbContext _context;
+        private readonly Dictionary<string, object?> _repos = new();
 
         public IBaseRepo<TEntity> Repo<TEntity>() where TEntity : BaseEntity
         {
@@ -25,6 +25,12 @@ namespace Movies.DAL.UnitOfWork
         }
 
         private bool disposed = false;
+
+        public UnitOfWork(MoviesDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)

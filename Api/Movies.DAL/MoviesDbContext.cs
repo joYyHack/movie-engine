@@ -5,9 +5,13 @@ using System.Reflection;
 
 namespace Movies.DAL
 {
-    public class MoviesDbContext(DbContextOptions<MoviesDbContext> options) : DbContext(options)
+    public class MoviesDbContext : DbContext
     {
         public DbSet<SearchResult> SearchResults { get; set; }
+
+        public MoviesDbContext(DbContextOptions<MoviesDbContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
