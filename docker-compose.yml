@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: movies-api
+    build:
+      context: .
+      dockerfile: ./Api/Movies.Api/Dockerfile
+    ports:
+      - 5142:80
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=movies;User Id=sa;Password=Admin1234;
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  frontend:
+    container_name: movies-ui
+    build:
+      context: .
+      dockerfile: ./ui/Dockerfile
+    ports:
+      - "3000:3000"
+
+  db:
+    container_name: movies-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: true
+      MSSQL_SA_PASSWORD: "Admin1234"
+    ports:
+      - "1433:1433"
