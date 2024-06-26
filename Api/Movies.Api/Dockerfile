@@ -17,7 +17,7 @@ RUN dotnet publish "./Movies.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
+EXPOSE 443
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Movies.Api.dll"]

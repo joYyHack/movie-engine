@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/Api/Movies.Api/bin/Debug/net8.0/Movies.Api.dll",
+      "program": "${workspaceFolder}/Api/Movies.Api/bin/Debug/net6.0/Movies.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/Api/Movies.Api",
       "stopAtEntry": false,
