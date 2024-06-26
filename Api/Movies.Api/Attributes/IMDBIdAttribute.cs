@@ -2,6 +2,9 @@
 
 namespace MoviesFetcher.Attributes
 {
+    /// <summary>
+    /// Validation attribute to ensure the IMDb ID is valid.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
     public class IMDbIdAttribute : ValidationAttribute
     {

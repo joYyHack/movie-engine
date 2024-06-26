@@ -6,6 +6,9 @@ using System.Net;
 
 namespace Movies.BL.Services
 {
+    /// <summary>
+    /// A client for interacting with the OMDb API.
+    /// </summary>
     public class OmdbClient
     {
         private readonly OMDB _omdb;
@@ -20,6 +23,14 @@ namespace Movies.BL.Services
             _client.DefaultRequestHeaders.Clear();
         }
 
+        /// <summary>
+        /// Searches for movies by title.
+        /// </summary>
+        /// <param name="title">The title of the movie.</param>
+        /// <param name="page">The page number for pagination.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains a response with the search results.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the title is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the page number is less than 1.</exception>
         public async Task<Response<MoviesSearchResult>> SearchMoviesByTitle(string title, uint page = 1)
         {
             ArgumentNullException.ThrowIfNull(title, nameof(title));
@@ -31,6 +42,14 @@ namespace Movies.BL.Services
             return await CallOBDbApi<MoviesSearchResult>(searchMovies);
         }
 
+        /// <summary>
+        /// Searches for multiple pages of movies by title.
+        /// </summary>
+        /// <param name="title">The title of the movies.</param>
+        /// <param name="pages">The number of pages to search for.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains a response with the search results.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the title is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the number of pages is less than 1.</exception>
         public async Task<Response<MoviesSearchResult>> SearchBunchMoviesByTitle(string title, uint pages = 5)
         {
             ArgumentNullException.ThrowIfNull(title, nameof(title));
@@ -61,6 +80,13 @@ namespace Movies.BL.Services
             return response;
         }
 
+        /// <summary>
+        /// Retrieves full movie data by IMDb ID.
+        /// </summary>
+        /// <param name="IMDbId">The IMDb ID of the movie.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains a response with the movie data.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the IMDb ID is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the IMDb ID does not start with "tt".</exception>
         public async Task<Response<MovieFullData>> GetMovieByIMDbId(string IMDbId)
         {
             ArgumentNullException.ThrowIfNull(IMDbId, nameof(IMDbId));
@@ -72,6 +98,12 @@ namespace Movies.BL.Services
             return await CallOBDbApi<MovieFullData>(getMovie);
         }
 
+        /// <summary>
+        /// Calls the OMDb API with the specified URI.
+        /// </summary>
+        /// <typeparam name="T">The type of the response data.</typeparam>
+        /// <param name="uri">The URI to call.</param>
+        /// <returns>A task representing the asynchronous operation. The task result contains a response with the data.</returns>
         private async Task<Response<T>> CallOBDbApi<T>(Uri uri) where T : BaseOMDbResponse
         {
             using var response = await _client.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);

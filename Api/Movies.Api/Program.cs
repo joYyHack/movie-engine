@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Movies.BL.Options;
 using Movies.BL.Services;
 using Movies.BL.Services.IServices;
@@ -44,7 +45,19 @@ builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1",
+        new OpenApiInfo
+        {
+            Title = "Movies API - V1",
+            Version = "v1"
+        }
+     );
+
+    var filePath = Path.Combine(AppContext.BaseDirectory, "Movies.Api.xml");
+    c.IncludeXmlComments(filePath);
+});
 
 var app = builder.Build();
 

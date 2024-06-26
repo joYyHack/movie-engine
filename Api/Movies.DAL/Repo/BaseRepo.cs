@@ -5,6 +5,10 @@ using System.Linq.Expressions;
 
 namespace Movies.DAL.Repo
 {
+    /// <summary>
+    /// Provides a base repository implementation for handling basic CRUD operations on entities.
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public class BaseRepo<TEntity> : IBaseRepo<TEntity> where TEntity : BaseEntity
     {
         protected readonly DbContext _context;

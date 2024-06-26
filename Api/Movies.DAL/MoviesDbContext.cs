@@ -5,6 +5,9 @@ using System.Reflection;
 
 namespace Movies.DAL
 {
+    /// <summary>
+    /// Represents the database context for the Movies application.
+    /// </summary>
     public class MoviesDbContext : DbContext
     {
         public DbSet<SearchResult> SearchResults { get; set; }

@@ -4,6 +4,7 @@ using System.Net;
 
 namespace MoviesFetcher.Middleware
 {
+
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
@@ -29,7 +30,7 @@ namespace MoviesFetcher.Middleware
                 var responseModel = new Response<string>
                 {
                     Failed = true,
-                    Message = $"{ex.Source}:{ex.TargetSite} - {ex?.Message}", 
+                    Message = $"{ex.Source}:{ex.TargetSite} - {ex?.Message}",
                     HttpStatusCode = HttpStatusCode.InternalServerError
                 };
 
