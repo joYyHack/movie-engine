@@ -1,0 +1,16 @@
+body {
+	background: #141414;
+	color: #ffffff;
+}
+
+.movie-item {
+	width: 100%;
+    height: auto;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.MuiImageListItem-root:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+	z-index: 10
+}
