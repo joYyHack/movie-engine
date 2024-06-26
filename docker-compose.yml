@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   backend:
+    container_name: movies-api
     build:
       context: .
       dockerfile: ./Api/Movies.Api/Dockerfile
@@ -11,16 +12,18 @@ services:
     depends_on:
       - db
     environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Database=YourDatabaseName;User Id=sa;Password=Admin1234;
+      - ConnectionStrings__DefaultConnection=Server=db;Database=movies;User Id=sa;Password=Admin1234;
 
   frontend:
+    container_name: movies-ui
     build:
       context: .
-      dockerfile: ./UI/Dockerfile
+      dockerfile: ./ui/Dockerfile
     ports:
       - "3000:3000"
 
   db:
+    container_name: movies-db
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: true

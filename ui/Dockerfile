@@ -2,12 +2,12 @@ FROM node:lts-alpine
 ENV NODE_ENV=production
 WORKDIR /ui
 
-COPY UI/public/ /ui/public
-COPY UI/src/ /ui/src
-COPY UI/package.json /ui/
+COPY ui/public/ /ui/public
+COPY ui/src/ /ui/src
+COPY ui/package.json /ui/
 
 RUN npm install --production --silent && mv node_modules ../
-COPY UI/ .
+COPY ui/ .
 EXPOSE 3000
 RUN chown -R node /ui
 USER node
