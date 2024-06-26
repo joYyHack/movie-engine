@@ -3,13 +3,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY ["Movies.Api/Movies.Api.csproj", "Movies.Api/"]
-COPY ["Movies.BL/Movies.BL.csproj", "Movies.BL/"]
-COPY ["Movies.DAL/Movies.DAL.csproj", "Movies.DAL/"]
+COPY ["Api/Movies.Api/Movies.Api.csproj", "Movies.Api/"]
+COPY ["Api/Movies.BL/Movies.BL.csproj", "Movies.BL/"]
+COPY ["Api/Movies.DAL/Movies.DAL.csproj", "Movies.DAL/"]
 
-RUN dotnet restore "./Movies.Api/Movies.Api.csproj"
+RUN dotnet restore "Movies.Api/Movies.Api.csproj"
 
-COPY . .
+COPY Api/ .
 
 WORKDIR "/src/Movies.Api"
 ARG BUILD_CONFIGURATION=Debug
