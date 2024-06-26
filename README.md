@@ -21,6 +21,8 @@ The API also Swagger for API documentation and testing.
   - [API Local](#api-local)
 - [Features and Technologies Used](#features-and-technologies-used)
 - [Examples](#examples)
+  - [UI](#ui)
+  - [Swagger](#swagger) 
 
 ## Overview
 
@@ -74,6 +76,9 @@ To run an API locally you need to run
 ```
 Then open the .sln file and run the .NET app as you usually do through Visual Studio or Visual Studio Code.e
 
+> [!NOTE]
+> Configuration data is located in the `appsettings.json` file, including the DbConnectionString, OMDb API key, Latest search return count, etc.
+
 ## Features and Technologies Used
 
 - .NET 6
@@ -90,7 +95,7 @@ Then open the .sln file and run the .NET app as you usually do through Visual St
 - Infinite scroll on the UI
 - 3-Tier Architecture
 
-##Examples
+## Examples
 ### UI
 ![ScreenRecording2024-06-27at00 41 01-ezgif com-video-to-gif-converter](https://github.com/joYyHack/movie-engine/assets/94608729/c7199549-a9c3-41d4-abca-96cd5915df3b)
 ### Swagger
