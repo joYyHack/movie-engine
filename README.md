@@ -61,6 +61,12 @@ Build and run the Docker containers:
 ```
 This will take a couple of minutes.
 
+> [!CAUTION]
+> If you run docker-compose next time, the API will likely fail because of migrations and database issues. There are two options to overcome this:
+> 1. Run `docker-compose up --build` again, but in a separate terminal under the same path without terminating the first one.
+> 2. First, run docker rm $(docker ps -a -q), and then run docker-compose up --build.
+> If you are using the Docker UI, you will notice that the API container has failed. You will be able to run it again.
+
 ### Start
 
 - UI: http://localhost:3000/
