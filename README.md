@@ -19,6 +19,7 @@ The API also Swagger for API documentation and testing.
   - [Docker](#docker) 
   - [Start](#start)
   - [API Local](#api-local)
+  - [Test](#test)
 - [Features and Technologies Used](#features-and-technologies-used)
 - [Examples](#examples)
   - [UI](#ui)
@@ -79,6 +80,13 @@ Then open the .sln file and run the .NET app as you usually do through Visual St
 > [!NOTE]
 > Configuration data is located in the `appsettings.json` file, including the DbConnectionString, OMDb API key, Latest search return count, etc.
 
+### Test
+
+To run tests
+```bash
+  dotnet test ./Api
+```
+
 ## Features and Technologies Used
 
 - .NET 6
@@ -94,6 +102,7 @@ Then open the .sln file and run the .NET app as you usually do through Visual St
 - Docker Compose usage
 - Infinite scroll on the UI
 - 3-Tier Architecture
+- Github Action
 
 ## Examples
 ### UI
